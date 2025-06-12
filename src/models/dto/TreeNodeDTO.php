@@ -43,4 +43,9 @@ class TreeNodeDTO
     {
         $this->childList[] = $child;
     }
+
+    public function withTitle(string $newTitle): self
+    {
+        return new self($this->id, $this->parentId, $newTitle);
+    }
 }

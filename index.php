@@ -44,6 +44,9 @@ if ($method === 'POST') {
         case '/tree/delete':
             echo json_encode($controller->delete($_POST));
         break;
+        case '/tree/edit':
+            echo json_encode($controller->edit($_POST));
+        break;
         default:
             http_response_code(404);
             echo '404 Not Found';

@@ -69,4 +69,30 @@ class TreeNodeRepository
 
         return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
+
+    public function findById(int $id): TreeNode
+    {
+        $stmt = $this->db->prepare("SELECT * FROM tree_node WHERE id = :id ");
+        $stmt->execute([
+            'id' => $id,
+        ]);
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return new TreeNode(
+            (int)$row['id'],
+            (int)$row['parent_id'],
+            $row['title'] ?? ''
+        );
+    }
+
+    public function updateNode(TreeNode $node): void
+    {
+        $stmt = $this->db->prepare("UPDATE tree_node SET parent_id = :parent_id, title = :title WHERE id = :id");
+        $stmt->execute([
+            'id' => $node->getId(),
+            'parent_id' => $node->getParentId(),
+            'title' => $node->getTitle(),
+        ]);
+    }
 }

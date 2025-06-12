@@ -1,8 +1,4 @@
-<script src="/src/js/jquery/jquery-3.7.1.min.js"</script>
-<script src="/src/js/bootstrap/bootstrap.min.js"></script>
-<script src="/src/js/bootstrap/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="/src/js/bootstrap/bootstrap.min.css">
-<script src="/src/js/index.js"></script>
+<?php include 'header.php'; ?>
 
 <div class="container">
     <div class="row mt-2">
@@ -18,7 +14,7 @@
 </div>
 
 <!-- Confirm delete modal -->
-<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteLabel">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -38,3 +34,29 @@
         </div>
     </div>
 </div>
+
+<!-- Change node title modal -->
+<div class="modal fade" id="changeNodeTitleModal" tabindex="-1" aria-labelledby="editNodeModalTitle">
+    <div class="modal-dialog">
+        <form id="editNodeForm" class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editNodeModalTitle">Change node title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="nodeTitle" class="form-label">Нова назва</label>
+                    <input type="text" class="form-control" id="nodeTitle" name="nodeTitle" required>
+                    <div class="error-title text-danger mt-1 hidden" id="error-title" ></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<?php include 'footer.php'; ?>

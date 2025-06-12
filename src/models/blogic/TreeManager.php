@@ -4,6 +4,7 @@ namespace src\models\blogic;
 
 use src\models\blogic\helper\TreeRenderer;
 use src\models\dto\TreeNodeDTO;
+use src\models\entities\TreeNode;
 use src\models\repository\TreeNodeRepository;
 
 class TreeManager
@@ -65,5 +66,22 @@ class TreeManager
         }
 
         return $branch;
+    }
+
+    public function findById(int $id): TreeNodeDTO
+    {
+        $node = $this->repository->findById($id);
+        return new TreeNodeDTO($node->getId(), $node->getParentId(), $node->getTitle());
+    }
+
+    public function editNode(TreeNodeDTO $dto): void
+    {
+        $entity = new TreeNode(
+            $dto->getId(),
+            $dto->getParentId(),
+            $dto->getTitle()
+        );
+
+        $this->repository->updateNode($entity);
     }
 }
